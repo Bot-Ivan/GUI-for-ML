@@ -7,7 +7,7 @@ public class mainWindow {
         // JFrame = a GUI window to add components to
         JFrame frame = new JFrame();
         frame.setTitle("ML gui");//change this later
-        frame.setSize(800,600);
+        frame.setSize(1000,1000);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
 
@@ -15,9 +15,12 @@ public class mainWindow {
         JLabel titleLabel = new JLabel();
         titleLabel.setText("Emotional Speech Recognition");
         titleLabel.setIcon(titleIcon);
+        titleLabel.setHorizontalTextPosition(JLabel.CENTER);
+        titleLabel.setVerticalTextPosition(JLabel.TOP);
         titleLabel.setHorizontalAlignment(JLabel.CENTER);
         titleLabel.setVerticalAlignment(JLabel.TOP);
-        frame.add(titleLabel);
+
         frame.setVisible(true);
+        frame.add(titleLabel);
     }
 }
