@@ -1,14 +1,22 @@
 import java.awt.Color;
 import java.awt.Font;
 import java.math.*;
-import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
+
 import javax.swing.border.Border;
 
-public class mainWindow {
+import java.awt.event.*;
+import java.io.File;
+import javax.swing.*;
+
+public class mainWindow extends JFrame implements ActionListener{
+
+        JButton FEbutton;
     public static void main(String[] args) {
+        new mainWindow();
+    }
+
+    public mainWindow(){
+
         //#region mainWindow
         JFrame mainWindow = new JFrame();
         mainWindow.setTitle("ML gui");//change this later
@@ -20,7 +28,7 @@ public class mainWindow {
 //#region titleLabel
         JLabel titleLabel = new JLabel();
         Border titleBorder = BorderFactory.createLineBorder(Color.red,2);
-        ImageIcon titleIcon = new ImageIcon("Images/titleIcon.png"); 
+        ImageIcon titleIcon = new ImageIcon("C:\\Users\\Ivan\\Desktop\\Java ML gui\\GUI-for-ML\\images\\titleIcon.png"); 
 
         int titleLabel_width = 500;
         int titleLabel_height = 150;
@@ -32,7 +40,7 @@ public class mainWindow {
         titleLabel.setText("Emotional Speech Recognition");
         titleLabel.setFont(new Font("Arial", Font.BOLD, 30));
         titleLabel.setIcon(titleIcon);
-        titleLabel.setBackground(Color.gray);
+        titleLabel.setBackground(Color.lightGray);
         titleLabel.setOpaque(true);
         titleLabel.setHorizontalTextPosition(JLabel.CENTER);
         titleLabel.setVerticalTextPosition(JLabel.TOP);
@@ -43,8 +51,8 @@ public class mainWindow {
 //#region fileExplorer
 
         JLabel fileExplorerLabel = new JLabel();
-        ImageIcon fileExplorerIcon = new ImageIcon("Images/fileExplorerIcon.png");
         Border fileExplorerBorder = BorderFactory.createLineBorder(Color.black, 1);
+        ImageIcon fileExplorerIcon = new ImageIcon("C:\\Users\\Ivan\\Desktop\\Java ML gui\\GUI-for-ML\\images\\fileExplorerIcon.png");
         
         int fileExplorerLabel_width = 150;
         int fileExplorerLabel_height = 20;
@@ -59,13 +67,30 @@ public class mainWindow {
         fileExplorerLabel.setBackground(Color.LIGHT_GRAY);
         fileExplorerLabel.setOpaque(true);
 
-        
+//#endregion
+        //region FEbutton
+        FEbutton = new JButton("Select Dataset");
+        FEbutton.setBounds(100, 350, 150, 30);
+        FEbutton.addActionListener(this);
 //#endregion
         mainWindow.add(titleLabel);
         mainWindow.add(fileExplorerLabel);
+        mainWindow.add(FEbutton);
         mainWindow.setVisible(true);
-        
-        
-        //frame.add(lblFileExplorer);
+    }
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        // Handle button click action here
+        System.out.println("Button Clicked");
+        if(e.getSource()==FEbutton){
+                JFileChooser fileChooser = new JFileChooser();
+                fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+
+                int result = fileChooser.showOpenDialog(null);
+                if (result == JFileChooser.APPROVE_OPTION) {
+                        File selectedFolder = fileChooser.getSelectedFile();
+                        System.out.println("Selected Folder: " + selectedFolder.getAbsolutePath());
+                }
+        }
     }
 }
