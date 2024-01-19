@@ -17,7 +17,6 @@ public class FileHandler {
             }
             else{
                 System.out.println("File already exists. writing to file.");
-                
                 writerObj.write(content);
                 writerObj.close();
                 System.out.println("Successfully wrote to the file");
